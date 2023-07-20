@@ -1,14 +1,6 @@
-import { prisma } from '@/lib/prisma'
 import { FastifyInstance } from 'fastify'
+import { studentsRoutes } from './domains/Student/routes'
 
 export async function appRoutes(app: FastifyInstance) {
-  app.get('/', (request, reply) => {
-    reply.send('Hello from AWS EC2 instance!')
-  })
-
-  app.get('/students', async (request, reply) => {
-    console.log('chegou')
-    const students = await prisma.student.findMany()
-    reply.send({ students })
-  })
+  app.register(studentsRoutes, { prefix: '/students' })
 }

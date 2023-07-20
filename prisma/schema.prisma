@@ -13,6 +13,7 @@ datasource db {
 model Student {
   id         String   @id @default(uuid())
   name       String
+  cpf        String   @unique
   birth_date DateTime
   address    String
   created_at DateTime @default(now())
