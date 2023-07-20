@@ -1,8 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { GetAllStudentsUseCaseFactory } from '../use-cases/factories/create-student-use-case-factory copy'
+import { StudentUseCaseFactory } from '../use-cases/factories/student-use-case-factory'
 
 export const getAll = async (request: FastifyRequest, reply: FastifyReply) => {
-  const getAllStudentsUseCase = GetAllStudentsUseCaseFactory.create()
+  const getAllStudentsUseCase = StudentUseCaseFactory.buildGetAll()
 
   const students = await getAllStudentsUseCase.execute()
   reply.send(students)

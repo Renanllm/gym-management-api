@@ -1,7 +1,7 @@
 import { ResourceAlreadyExistsError } from '@/http/domains/Student/use-cases/errors/resource-already-exists-error'
-import { CreateStudentUseCaseFactory } from '@/http/domains/Student/use-cases/factories/create-student-use-case-factory'
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
+import { StudentUseCaseFactory } from '../use-cases/factories/student-use-case-factory'
 
 export const create = async (request: FastifyRequest, reply: FastifyReply) => {
   const requestBodySchema = z.object({
@@ -15,7 +15,7 @@ export const create = async (request: FastifyRequest, reply: FastifyReply) => {
     request.body,
   )
 
-  const createStudentUseCase = CreateStudentUseCaseFactory.create()
+  const createStudentUseCase = StudentUseCaseFactory.buildCreate()
 
   try {
     await createStudentUseCase.execute({ name, cpf, birthDate, address })
