@@ -1,5 +1,4 @@
-import { env } from '@/env'
-import { FastifyRequest, FastifyReply } from 'fastify'
+import { FastifyReply, FastifyRequest } from 'fastify'
 import { ZodError } from 'zod'
 
 export function errorHandler(
@@ -13,9 +12,6 @@ export function errorHandler(
       .send({ message: `Validation error`, issues: error.format() })
   }
 
-  if (env.NODE_ENV !== 'production') {
-    console.error(error)
-  }
-
+  console.error(error.message)
   reply.status(500).send({ message: 'Internal server error' })
 }

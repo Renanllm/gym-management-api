@@ -24,6 +24,9 @@ export const create = async (request: FastifyRequest, reply: FastifyReply) => {
     if (error instanceof ResourceAlreadyExistsError) {
       reply.status(409).send({ message: error.message })
     }
+    if (error instanceof Error) {
+      console.log(error.message)
+    }
     throw error
   }
 }
