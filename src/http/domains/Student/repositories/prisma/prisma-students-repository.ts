@@ -11,13 +11,9 @@ export class PrismaStudentsRepository implements StudentsRepository {
     })
   }
 
-  // async findById(id: string) {
-  //   return await prisma.user.findUnique({
-  //     where: {
-  //       id,
-  //     },
-  //   })
-  // }
+  async findAll() {
+    return await prisma.student.findMany()
+  }
 
   async create(data: Prisma.StudentCreateInput) {
     return await prisma.student.create({

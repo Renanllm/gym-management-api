@@ -10,6 +10,10 @@ export class InMemoryStudentsRepository implements StudentsRepository {
     return student ?? null
   }
 
+  async findAll() {
+    return this.students
+  }
+
   async create(data: Prisma.StudentCreateInput) {
     const student = {
       id: randomUUID(),
